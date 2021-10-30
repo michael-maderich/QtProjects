@@ -1,3 +1,6 @@
+include(../qmake-target-platform.pri)
+include(../qmake-destination-path.pri)
+
 QT -= gui
 
 TARGET = cm-lib
@@ -14,6 +17,7 @@ SOURCES += source/models/client.cpp \
 
 HEADERS += source/cm-lib_global.h \
             source/controllers/master-controller.h \
+            source/controllers/navigation-controller.h \
             source/models/client.h
 
 # You can make your code fail to compile if it uses deprecated APIs.
@@ -25,3 +29,12 @@ unix {
     target.path = /usr/lib
 }
 !isEmpty(target.path): INSTALLS += target
+
+DESTDIR = $$PWD/../binaries/$$DESTINATION_PATH
+OBJECTS_DIR = $$PWD/build/$$DESTINATION_PATH/.obj
+MOC_DIR = $$PWD/build/$$DESTINATION_PATH/.moc
+RCC_DIR = $$PWD/build/$$DESTINATION_PATH/.qrc
+UI_DIR = $$PWD/build/$$DESTINATION_PATH/.ui
+
+message(cm-lib project dir: $${PWD})
+message(cm-lib output dir: $${DESTDIR})

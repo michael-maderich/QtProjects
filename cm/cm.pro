@@ -5,3 +5,5 @@ SUBDIRS += \
     cm-tests \
     cm-tests \
     cm-ui
+
+message(cm project dir: $${PWD})

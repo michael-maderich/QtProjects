@@ -1,3 +1,6 @@
+include(../qmake-target-platform.pri)
+include(../qmake-destination-path.pri)
+
 QT += qml quick
 
 TEMPLATE = app
@@ -15,7 +18,7 @@ SOURCES += source/main.cpp
 
 RESOURCES += views.qrc
 
-LIBS += -L$$PWD/../../build-cm-Desktop_Qt_5_12_11_MSVC2017_64bit-Debug/cm-lib/debug -lcm-lib
+LIBS += -L$$PWD/../binaries/$$DESTINATION_PATH -lcm-lib
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH = $$PWD
@@ -27,3 +30,9 @@ QML_DESIGNER_IMPORT_PATH =
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DESTDIR = $$PWD/../binaries/$$DESTINATION_PATH
+OBJECTS_DIR = $$PWD/build/$$DESTINATION_PATH/.obj
+MOC_DIR = $$PWD/build/$$DESTINATION_PATH/.moc
+RCC_DIR = $$PWD/build/$$DESTINATION_PATH/.qrc
+UI_DIR = $$PWD/build/$$DESTINATION_PATH/.ui
